@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/personalPortfolio/',
+  base: '/',
   plugins: [react()],
   build: {
     outDir: 'dist',

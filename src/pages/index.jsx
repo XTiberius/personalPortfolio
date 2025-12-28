@@ -44,7 +44,7 @@ function PagesContent() {
 
 export default function Pages() {
     return (
-        <Router basename="/personalPortfolio">
+        <Router>
             <PagesContent />
         </Router>
     );
