@@ -9,11 +9,15 @@ export default function ProjectCard({ title, description, link, icon }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="group relative"
+      style={{ willChange: 'transform, opacity' }}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div 
+        className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ willChange: 'opacity', transform: 'translateZ(0)' }}
+      />
       
       <div className="relative bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 border border-zinc-800/50 rounded-2xl overflow-hidden backdrop-blur-sm hover:border-red-500/30 transition-all duration-300">
         <div 
@@ -39,8 +43,9 @@ export default function ProjectCard({ title, description, link, icon }) {
             
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="text-zinc-400"
+              style={{ willChange: 'transform' }}
             >
               <ChevronDown className="w-5 h-5" />
             </motion.div>
@@ -53,8 +58,9 @@ export default function ProjectCard({ title, description, link, icon }) {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
+              style={{ willChange: 'height, opacity' }}
             >
               <div className="px-6 pb-6 pt-2 border-t border-zinc-800/50">
                 <p className="text-zinc-400 leading-relaxed mb-4">

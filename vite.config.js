@@ -9,6 +9,17 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'framer-motion': ['framer-motion'],
+        },
+      },
+    },
+    minify: 'esbuild',
+    target: 'esnext',
   },
   server: {
     allowedHosts: true

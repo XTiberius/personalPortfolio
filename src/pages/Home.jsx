@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Linkedin, Github, Mail } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
@@ -65,23 +65,45 @@ const socials = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Background effects */}
+      {/* Background effects - Optimized with GPU acceleration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-red-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-zinc-800/30 rounded-full blur-3xl" />
+        <div 
+          className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl"
+          style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-0 w-80 h-80 bg-red-500/5 rounded-full blur-3xl"
+          style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+        />
+        <div 
+          className="absolute top-1/2 left-0 w-64 h-64 bg-zinc-800/30 rounded-full blur-3xl"
+          style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+        />
       </div>
 
-      {/* Star field effect */}
+      {/* Star field effect - Optimized with memoization and reduced count */}
       <div className="fixed inset-0 pointer-events-none opacity-40">
-        {[...Array(50)].map((_, i) => (
+        {useMemo(() => {
+          const stars = [];
+          for (let i = 0; i < 30; i++) {
+            stars.push({
+              id: i,
+              left: Math.random() * 100,
+              top: Math.random() * 100,
+              opacity: Math.random() * 0.7 + 0.3
+            });
+          }
+          return stars;
+        }, []).map((star) => (
           <div
-            key={i}
+            key={star.id}
             className="absolute w-px h-px bg-white rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.7 + 0.3
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
+              willChange: 'opacity',
+              transform: 'translateZ(0)'
             }}
           />
         ))}
@@ -93,11 +115,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="relative mb-8"
+            style={{ willChange: 'transform, opacity' }}
           >
-            {/* Glow behind photo */}
-            <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-red-800 rounded-full blur-2xl opacity-30 scale-110" />
+            {/* Glow behind photo - Optimized blur */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-br from-red-600 to-red-800 rounded-full blur-2xl opacity-30 scale-110"
+              style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+            />
             
             <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-red-500/30 shadow-2xl shadow-red-500/20">
               <img
@@ -112,8 +138,9 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-center max-w-2xl"
+            style={{ willChange: 'transform, opacity' }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
               <span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
@@ -135,13 +162,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
+            transition={{ delay: 1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="absolute bottom-10 left-1/2 -translate-x-1/2"
+            style={{ willChange: 'opacity' }}
           >
             <motion.div
               animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
               className="w-6 h-10 rounded-full border-2 border-zinc-700 flex items-start justify-center p-2"
+              style={{ willChange: 'transform' }}
             >
               <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
             </motion.div>
@@ -153,9 +182,10 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-center mb-16"
+            style={{ willChange: 'transform, opacity' }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ventures & Projects</h2>
             <p className="text-zinc-500 max-w-lg mx-auto">A collection of companies and protocols I've helped build and launch.</p>
@@ -177,9 +207,10 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="text-center mb-12"
+              style={{ willChange: 'transform, opacity' }}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Let's Connect</h2>
               <p className="text-zinc-500">Find me across the internet</p>
@@ -188,9 +219,10 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-wrap items-center justify-center gap-4"
+              style={{ willChange: 'transform, opacity' }}
             >
               {socials.map((social) => (
                 <SocialButton key={social.label} {...social} />
