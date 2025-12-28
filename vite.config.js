@@ -6,6 +6,10 @@ import path from 'path'
 export default defineConfig({
   base: '/personalPortfolio/',
   plugins: [react()],
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+  },
   server: {
     allowedHosts: true
   },
