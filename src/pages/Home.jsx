@@ -18,13 +18,47 @@ const SubstackIcon = ({ className }) => (
   </svg>
 );
 
+// Custom von Reichardt logo
+const VonReichardtIcon = ({ className }) => (
+  <svg 
+    viewBox="0 0 100 50" 
+    className={className} 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+    style={{ width: '100%', height: '100%' }}
+  >
+    <text 
+      x="50" 
+      y="15" 
+      fontFamily="Georgia, 'Times New Roman', serif" 
+      fontSize="20" 
+      fill="#6B46C1" 
+      fontWeight="400"
+      letterSpacing="0.6px"
+      textAnchor="middle"
+      dominantBaseline="middle"
+      style={{ textTransform: 'lowercase' }}
+    >
+      von
+    </text>
+    <text 
+      x="50" 
+      y="37" 
+      fontFamily="Georgia, 'Times New Roman', serif" 
+      fontSize="20" 
+      fill="#6B46C1" 
+      fontWeight="400"
+      letterSpacing="0.6px"
+      textAnchor="middle"
+      dominantBaseline="middle"
+    >
+      Reichardt
+    </text>
+  </svg>
+);
+
 const projects = [
-  {
-    title: "Nexus VC",
-    description: "A venture capital firm focused on early-stage investments in emerging technology sectors. Nexus VC partners with visionary founders building transformative solutions across AI, blockchain, and deep tech.",
-    link: "https://a16z.com",
-    icon: "N"
-  },
   {
     title: "Concord Wallet",
     description: "A next-generation digital wallet designed for seamless cryptocurrency management. Concord Wallet combines institutional-grade security with an intuitive user experience for both retail and professional users.",
@@ -34,8 +68,20 @@ const projects = [
   {
     title: "BlackBird Protocol",
     description: "A decentralized protocol enabling secure, private transactions across multiple blockchain networks. BlackBird Protocol leverages cutting-edge cryptography to ensure data integrity and user privacy.",
-    link: "https://ethereum.org",
+    link: "https://tzk.bet",
     icon: "B"
+  },
+  {
+    title: "von Reichardt",
+    description: "von Reichardt is a technocentric strategic advisory firm advises clients and partners alike through intersections of business, blockchain, finance and emergent technologies.",
+    link: "https://vonreichardt.com",
+    icon: <VonReichardtIcon className="w-full h-full" />
+  },
+  {
+    title: "Nexus VC",
+    description: "A venture capital firm focused on early-stage investments in emerging technology sectors. Nexus VC partners with visionary founders building transformative solutions across AI, blockchain, and deep tech.",
+    link: "https://nexus-vc.com",
+    icon: "N"
   }
 ];
 

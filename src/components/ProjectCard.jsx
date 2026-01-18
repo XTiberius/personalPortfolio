@@ -30,6 +30,12 @@ export default function ProjectCard({ title, description, link, icon }) {
                 <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg shadow-red-500/20">
                   <img src={icon} alt={title} className="w-full h-full object-cover" />
                 </div>
+              ) : React.isValidElement(icon) ? (
+                <div className="w-12 h-12 rounded-xl bg-transparent flex items-center justify-center shadow-lg shadow-red-500/20 p-1">
+                  <div className="w-full h-full flex items-center justify-center">
+                    {icon}
+                  </div>
+                </div>
               ) : (
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-red-500/20">
                   {icon}
